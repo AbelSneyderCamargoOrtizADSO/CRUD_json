@@ -1,0 +1,86 @@
+{
+  "user": [
+    {
+      "id": "2",
+      "nombre": "Luisss",
+      "apellido": "CamargoppPI",
+      "documento": "2342624345",
+      "tipo_doc": "cc",
+      "correo": "grdgrdg@grdgr-com",
+      "direccion": "calle 450"
+    },
+    {
+      "id": "3",
+      "nombre": "Luisss",
+      "apellido": "Camargopp",
+      "documento": "2342624345",
+      "tipo_doc": "cc",
+      "correo": "grdgrdg@grdgr-com",
+      "direccion": "calle 450"
+    },
+    {
+      "id": "4",
+      "nombre": "Luisss",
+      "apellido": "Camargopp",
+      "documento": "2342624345",
+      "tipo_doc": "cc",
+      "correo": "grdgrdg@grdgr-com",
+      "direccion": "calle 450"
+    },
+    {
+      "id": "5",
+      "nombre": "Luisss",
+      "apellido": "Camargopp",
+      "documento": "2342624345",
+      "tipo_doc": "cc",
+      "correo": "grdgrdg@grdgr-com",
+      "direccion": "calle 450"
+    },
+    {
+      "id": "6",
+      "nombre": "Luisss",
+      "apellido": "Camargo",
+      "documento": "2342624345",
+      "tipo_doc": "ti",
+      "correo": "grdgrdg@grdgr-com",
+      "direccion": "calle 104"
+    },
+    {
+      "id": "7",
+      "nombre": "Abel",
+      "apellido": "Camargao",
+      "documento": "1096063951",
+      "tipo_doc": "ti",
+      "correo": "grdgrdg@grdgr-com",
+      "direccion": "calle 103"
+    },
+    {
+      "id": "8",
+      "nombre": "Luis ",
+      "apellido": "Camargo",
+      "documento": "3454354",
+      "tipo_doc": "ti",
+      "correo": "luisdiaz@gmail.com",
+      "direccion": "calle 103"
+    },
+    {
+      "id": "9",
+      "nombre": "retterert",
+      "apellido": "ertrteert",
+      "documento": "345453534534",
+      "tipo_doc": "cc",
+      "correo": "reeter@ghrdr.com",
+      "direccion": "calee 103"
+    }
+  ],
+  "tipo_doc": [
+    {
+      "id": "1",
+      "nombre": "cc"
+    },
+    {
+      "id": "2",
+      "nombre": "ti"
+    }
+  ]
+}
