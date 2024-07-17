@@ -63,7 +63,9 @@ documento.addEventListener("keydown", soloNumeros)
 const mostrarDatos = async () => {
   const response = await fetch('http://localhost:3000/user')
   const data = await response.json()
-  let tabla = document.getElementById("tabla")
+  let tbody = document.getElementById("tbody")
+
+  tbody.innerHTML = '';
 
 
   data.forEach((user) => {
@@ -77,12 +79,12 @@ const mostrarDatos = async () => {
     <td>${user.correo}</td>
     <td>${user.direccion}</td>
     <td>
-      <button onclick="cargarDatos(${user.id})" class="editar"><i class="bi bi-pencil-square"></i></button>
-      <button onclick="eliminarDatos(${user.id})" class="eliminar"><i class="bi bi-trash3"></i></button>
+      <button type="button" onclick="cargarDatos(${user.id})" class="editar"><i class="bi bi-pencil-square"></i></button>
+      <button type="button" onclick="eliminarDatos(${user.id})" class="eliminar"><i class="bi bi-trash3"></i></button>
     </td>`
     
     
-    tabla.appendChild(tr)
+    tbody.appendChild(tr)
   });
 
   // Actualizar nextId al mayor ID existente + 1
@@ -119,13 +121,17 @@ async function enviarDatos() {
 
   await fetch(url, {
     method: method,
+    headers: {
+      'Content-Type': 'application/json' 
+    },
     body: JSON.stringify(data)
   });
 
   editarId = null;
+  mostrarDatos();
 }
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
 
   event.preventDefault();
 
@@ -164,7 +170,8 @@ form.addEventListener('submit', (event) => {
     return;
   }
   
-  enviarDatos();
+  await enviarDatos();
+  form.reset();
 })
 
 
@@ -173,6 +180,7 @@ const eliminarDatos = async (id) => {
   await fetch(`http://localhost:3000/user/${id}`, {
     method: 'DELETE'
   });
+  mostrarDatos();
 }
   
 // CARGAR DATOS PARA EDICION

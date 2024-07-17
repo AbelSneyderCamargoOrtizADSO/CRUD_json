@@ -1,33 +1,6 @@
 {
   "user": [
     {
-      "id": "2",
-      "nombre": "Luisss",
-      "apellido": "CamargoppPI",
-      "documento": "2342624345",
-      "tipo_doc": "cc",
-      "correo": "grdgrdg@grdgr-com",
-      "direccion": "calle 450"
-    },
-    {
-      "id": "3",
-      "nombre": "Luisss",
-      "apellido": "Camargopp",
-      "documento": "2342624345",
-      "tipo_doc": "cc",
-      "correo": "grdgrdg@grdgr-com",
-      "direccion": "calle 450"
-    },
-    {
-      "id": "4",
-      "nombre": "Luisss",
-      "apellido": "Camargopp",
-      "documento": "2342624345",
-      "tipo_doc": "cc",
-      "correo": "grdgrdg@grdgr-com",
-      "direccion": "calle 450"
-    },
-    {
       "id": "5",
       "nombre": "Luisss",
       "apellido": "Camargopp",
@@ -56,21 +29,21 @@
     },
     {
       "id": "8",
-      "nombre": "Luis ",
-      "apellido": "Camargo",
-      "documento": "3454354",
-      "tipo_doc": "ti",
-      "correo": "luisdiaz@gmail.com",
-      "direccion": "calle 103"
+      "nombre": "Camilo",
+      "apellido": "Sanchez",
+      "documento": "234234",
+      "tipo_doc": "cc",
+      "correo": "cami@gmai.com",
+      "direccion": "carrea 15"
     },
     {
       "id": "9",
-      "nombre": "retterert",
-      "apellido": "ertrteert",
-      "documento": "345453534534",
+      "nombre": "Karol",
+      "apellido": "Cardenas",
+      "documento": "10934554",
       "tipo_doc": "cc",
-      "correo": "reeter@ghrdr.com",
-      "direccion": "calee 103"
+      "correo": "karol@gmail.com",
+      "direccion": "transversal 6"
     }
   ],
   "tipo_doc": [
