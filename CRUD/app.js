@@ -1,11 +1,15 @@
+import { validDoc, validTel } from "./modulo.js";
+
 // VARIABLES
 let form = document.getElementById("form")
+let btnEnviar = document.getElementById("btnEnviar")
 
 let nextId = 1;
-// let id = document.getElementById("id")
 let nombre = document.getElementById("name")
 let apellido = document.getElementById("lastname")
 let documento = document.getElementById("documento")
+let telefono = document.getElementById("tel")
+let tyc = document.getElementById("terminos")
 
 const select = document.getElementById('tipo_doc');
 
@@ -14,6 +18,8 @@ let direccion = document.getElementById("direccion")
 
 let editarId = null;
 
+
+// CARGAR TIPO DE DOCUMENTO
 async function tipo_doc() {
   const response = await fetch('http://localhost:3000/tipo_doc');
   const data = await response.json();
@@ -25,38 +31,51 @@ async function tipo_doc() {
     select.appendChild(option);
   });
 }
-
 tipo_doc();
 
 // VALIDACIONES
-const soloNumeros = () => {
+const soloNumeros = (event) => {
   if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Home' || event.key === 'End') {
     return;
   }
 
-  if (/[0-9]/.test(event.key)) {
-    return
-  }
+  if (/[0-9]/.test(event.key)) return;
 
   event.preventDefault();
 }
 
-const soloLetras = () => {
+const soloLetras = (event) => {
   if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Home' || event.key === 'End') {
     return;
   }
 
-  if (/[A-Za-z\s]/.test(event.key)) {
-    return;
-  }
+  if (/[A-Za-zÁ-ÿ\s]/.test(event.key)) return;
 
   event.preventDefault();
 }
 
-// id.addEventListener("keydown", soloNumeros)
-nombre.addEventListener("keydown", soloLetras)
-apellido.addEventListener("keydown", soloLetras)
-documento.addEventListener("keydown", soloNumeros)
+tyc.addEventListener("change", function() {
+  if (tyc.checked) {
+    btnEnviar.disabled = false;
+  } else {
+    btnEnviar.disabled = true;
+  }
+});
+
+// id.addEventListener("keypress", soloNumeros)
+nombre.addEventListener("keypress", soloLetras)
+apellido.addEventListener("keypress", soloLetras)
+documento.addEventListener("keypress", soloNumeros)
+telefono.addEventListener("keypress", soloNumeros)
+
+telefono.addEventListener("input", validTel);
+documento.addEventListener("input", validDoc);
+
+
+
+
+
+
 
 
 // MOSTRAR DATOS EN LA TABLA
@@ -74,6 +93,7 @@ const mostrarDatos = async () => {
     `<td>${user.id}</td>
     <td>${user.nombre}</td>
     <td>${user.apellido}</td>
+    <td>${user.telefono}</td>
     <td>${user.tipo_doc}</td>
     <td>${user.documento}</td>
     <td>${user.correo}</td>
@@ -102,6 +122,7 @@ async function enviarDatos() {
     nombre: nombre.value,
     apellido: apellido.value,
     documento: documento.value,
+    telefono: telefono.value,
     tipo_doc: select.value,
     correo: correo.value,
     direccion: direccion.value
@@ -150,6 +171,11 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
+  if (telefono.value === '') {
+    alert("COMPLETE EL CAMPO DE TELEFONO");
+    return;
+  }
+
   if (documento.value === '') {
     alert("COMPLETE EL CAMPO DE DOCUMENTO");
     return;
@@ -165,6 +191,11 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
+  // if (!/^[a-z]{3,}\@[a-z]{2,}\.[a-z]{2,}$/.test(correo)) {
+  //   alert("INGRESE UN CORREO VALIDO");
+  //   return;
+  // }
+
   if (direccion.value === '') {
     alert("COMPLETE EL CAMPO DE DIRECCION");
     return;
@@ -173,7 +204,6 @@ form.addEventListener('submit', async (event) => {
   await enviarDatos();
   form.reset();
 })
-
 
 // ELIMINAR DATOS O USUARIO DE LA API 
 const eliminarDatos = async (id) => {

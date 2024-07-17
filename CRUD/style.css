@@ -23,6 +23,13 @@ body {
   border-radius: 10px;
 }
 
+.form__group{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+
 .form label {
   margin-top: 40px;
   font-weight: 600;
@@ -30,7 +37,7 @@ body {
 
 .form input,
 select {
-  width: 250px;
+  width: 350px;
   border-radius: 3px;
   outline: 0;
   border: 0;
@@ -80,4 +87,12 @@ select {
   background-color: lightgreen;
   color: white;
   cursor: pointer;
+}
+
+.error{
+  border: 2px solid red !important;
+}
+
+.correcto{
+  border: 2px solid green !important;
 }
