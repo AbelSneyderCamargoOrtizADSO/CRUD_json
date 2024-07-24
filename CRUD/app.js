@@ -1,4 +1,10 @@
-import { validDoc, validTel } from "./modulo.js";
+// ORDEN: importaciones - variables - metodos addevent 
+import { validCampos, validDoc, validTel } from "./modules/modulo.js";
+import mostrarDatos from "./modules/mostrarDatos.js";
+import { enviarDatos } from "./modules/enviarDatos.js";
+import { soloNumeros, soloLetras } from "./modules/validPress.js";
+ 
+
 
 // VARIABLES
 let form = document.getElementById("form")
@@ -33,32 +39,11 @@ async function tipo_doc() {
 }
 tipo_doc();
 
-// VALIDACIONES
-const soloNumeros = (event) => {
-  if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Home' || event.key === 'End') {
-    return;
-  }
-
-  if (/[0-9]/.test(event.key)) return;
-
-  event.preventDefault();
-}
-
-const soloLetras = (event) => {
-  if (event.key === 'Backspace' || event.key === 'Delete' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' || event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'Home' || event.key === 'End') {
-    return;
-  }
-
-  if (/[A-Za-zÁ-ÿ\s]/.test(event.key)) return;
-
-  event.preventDefault();
-}
-
 tyc.addEventListener("change", function() {
   if (tyc.checked) {
-    btnEnviar.disabled = false;
+      btnEnviar.disabled = false;
   } else {
-    btnEnviar.disabled = true;
+      btnEnviar.disabled = true;
   }
 });
 
@@ -68,144 +53,30 @@ apellido.addEventListener("keypress", soloLetras)
 documento.addEventListener("keypress", soloNumeros)
 telefono.addEventListener("keypress", soloNumeros)
 
-telefono.addEventListener("input", validTel);
-documento.addEventListener("input", validDoc);
-
-
-
-
-
-
-
+telefono.addEventListener("input", () => validTel(telefono));
+documento.addEventListener("input", () => validDoc(documento));
 
 // MOSTRAR DATOS EN LA TABLA
-const mostrarDatos = async () => {
-  const response = await fetch('http://localhost:3000/user')
-  const data = await response.json()
-  let tbody = document.getElementById("tbody")
-
-  tbody.innerHTML = '';
-
-
-  data.forEach((user) => {
-    const tr = document.createElement('tr')
-    tr.innerHTML =
-    `<td>${user.id}</td>
-    <td>${user.nombre}</td>
-    <td>${user.apellido}</td>
-    <td>${user.telefono}</td>
-    <td>${user.tipo_doc}</td>
-    <td>${user.documento}</td>
-    <td>${user.correo}</td>
-    <td>${user.direccion}</td>
-    <td>
-      <button type="button" onclick="cargarDatos(${user.id})" class="editar"><i class="bi bi-pencil-square"></i></button>
-      <button type="button" onclick="eliminarDatos(${user.id})" class="eliminar"><i class="bi bi-trash3"></i></button>
-    </td>`
-    
-    
-    tbody.appendChild(tr)
-  });
-
-  // Actualizar nextId al mayor ID existente + 1
-  if (data.length > 0) {
-    nextId = Math.max(...data.map(user => user.id)) + 1;
-  }
-}
 mostrarDatos()
 
+form.addEventListener('submit', () => validCampos(nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos,  editarId, nextId))
 
-// ENVIAR DATOS
-async function enviarDatos() {
-  const data = {
-    id: "" ,
-    nombre: nombre.value,
-    apellido: apellido.value,
-    documento: documento.value,
-    telefono: telefono.value,
-    tipo_doc: select.value,
-    correo: correo.value,
-    direccion: direccion.value
-  }
-
-  let url = 'http://localhost:3000/user';
-  let method = 'POST';
-
-  if (editarId) {
-    url = `${url}/${editarId}`;
-    method = 'PUT';
-    data.id = editarId.toString();
-  } else {
-    data.id = nextId.toString(); // Asignar el nuevo ID como cadena y luego incrementarlo
-    nextId++; 
-  }
-
-  await fetch(url, {
-    method: method,
-    headers: {
-      'Content-Type': 'application/json' 
-    },
-    body: JSON.stringify(data)
-  });
-
-  editarId = null;
-  mostrarDatos();
-}
-
-form.addEventListener('submit', async (event) => {
-
-  event.preventDefault();
-
-  // if (id.value === '') {
-  //   alert("COMPLETE EL CAMPO DE ID");
-  //   return;
-  // }
-
-  if (nombre.value === '') {
-    alert("COMPLETE EL CAMPO DE NOMBRE");
-    return;
-  }
-
-  if (apellido.value === '') {
-    alert("COMPLETE EL CAMPO DE APELLIDO");
-    return;
-  }
-
-  if (telefono.value === '') {
-    alert("COMPLETE EL CAMPO DE TELEFONO");
-    return;
-  }
-
-  if (documento.value === '') {
-    alert("COMPLETE EL CAMPO DE DOCUMENTO");
-    return;
-  }
-
-  if (select.value === '') {
-    alert("SELECCIONE EL TIPO DE DOCUMENTO");
-    return;
-  }
-
-  if (correo.value === '') {
-    alert("COMPLETE EL CAMPO DE CORREO");
-    return;
-  }
-
-  // if (!/^[a-z]{3,}\@[a-z]{2,}\.[a-z]{2,}$/.test(correo)) {
-  //   alert("INGRESE UN CORREO VALIDO");
-  //   return;
-  // }
-
-  if (direccion.value === '') {
-    alert("COMPLETE EL CAMPO DE DIRECCION");
-    return;
-  }
-  
-  await enviarDatos();
-  form.reset();
-})
 
 // ELIMINAR DATOS O USUARIO DE LA API 
+/*
+let eliminarrrrrrrrrr = document.querySelectorAll(".tbody > .eliminar")
+console.log(eliminarrrrrrrrrr)
+
+eliminarrrrrrrrrr.forEach((eli) => {
+  eli.addEventListener("click", () => {
+    console.log("fesfesf")
+  })
+})
+
+if (eliminar != null) {
+  eliminar.addEventListener("click", () => console.log("drgdrgrg"))
+}
+*/
 const eliminarDatos = async (id) => {
   await fetch(`http://localhost:3000/user/${id}`, {
     method: 'DELETE'
@@ -214,7 +85,7 @@ const eliminarDatos = async (id) => {
 }
   
 // CARGAR DATOS PARA EDICION
-const cargarDatos = async (id) => {
+async function cargarDatos(id){
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
 
@@ -227,3 +98,5 @@ const cargarDatos = async (id) => {
   document.getElementById("email").value = data.correo;
   document.getElementById("direccion").value = data.direccion;
 }
+
+// cargarDatos(5);
