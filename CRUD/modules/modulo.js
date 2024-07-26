@@ -1,55 +1,22 @@
 // MODULARIZAR, OPTIMIZAR, HACER QUE CUANDO SE ENVIE APAREZCAN TODOS EN ROJO SI SE ENVA VACIO, HACER LAS VALIDACIONES DE CANTIDAD DE CARACTERES
 
-export const validCampos = async (nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos, editarId, nextId) => {
+
+export const validCampos = async (event, nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos, idUsuEditar, nextId) => {
 
   event.preventDefault();
 
-  // if (id.value === '') {
-  //   alert("COMPLETE EL CAMPO DE ID");
-  //   return;
-  // }
+  let campos = [{nom: "Nombre", val: nombre.value}, {nom: "Apellido", val: apellido.value}, {nom: "Telefono", val: telefono.value}, {nom: "Tipo de documento", val: select.value}, {nom: "Numero de documento", val: documento.value}, {nom: "Correo electrónico", val: correo.value}, {nom: "Direccion residencial", val: direccion.value}];
 
-  if (nombre.value === '') {
-    alert("COMPLETE EL CAMPO DE NOMBRE");
-    return;
+
+  for (let campo of campos) {
+    if (campo.val.trim() === '') {
+      alert(`El campo ${campo.nom} NO puede estar vacio`);
+      return;
+    }
   }
 
-  if (apellido.value === '') {
-    alert("COMPLETE EL CAMPO DE APELLIDO");
-    return;
-  }
-
-  if (telefono.value === '') {
-    alert("COMPLETE EL CAMPO DE TELEFONO");
-    return;
-  }
-
-  if (documento.value === '') {
-    alert("COMPLETE EL CAMPO DE DOCUMENTO");
-    return;
-  }
-
-  if (select.value === '') {
-    alert("SELECCIONE EL TIPO DE DOCUMENTO");
-    return;
-  }
-
-  if (correo.value === '') {
-    alert("COMPLETE EL CAMPO DE CORREO");
-    return;
-  }
-
-  // if (!/^[a-z]{3,}\@[a-z]{2,}\.[a-z]{2,}$/.test(correo)) {
-  //   alert("INGRESE UN CORREO VALIDO");
-  //   return;
-  // }
-
-  if (direccion.value === '') {
-    alert("COMPLETE EL CAMPO DE DIRECCION");
-    return;
-  }
-  
-  await enviarDatos(nombre, apellido, documento, telefono, select, correo, direccion, editarId, nextId);
+  // console.log("ID del usuario para enviar:", idUsuEditar); 
+  await enviarDatos(nombre, apellido, documento, telefono, select, correo, direccion, idUsuEditar, nextId);
   form.reset();
 }
 

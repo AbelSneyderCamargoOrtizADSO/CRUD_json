@@ -1,5 +1,6 @@
-// ENVIAR DATOS
-export async function enviarDatos(nombre, apellido, documento, telefono, select, correo, direccion, editarId, nextId) {
+import mostrarDatos from './mostrarDatos.js';
+
+export async function enviarDatos(nombre, apellido, documento, telefono, select, correo, direccion, idUsuEditar, nextId) {
   const data = {
     id: "",
     nombre: nombre.value,
@@ -14,10 +15,10 @@ export async function enviarDatos(nombre, apellido, documento, telefono, select,
   let url = "http://localhost:3000/user";
   let method = "POST";
 
-  if (editarId) {
-    url = `${url}/${editarId}`;
+  if (idUsuEditar) {
+    url = `${url}/${idUsuEditar}`;
     method = "PUT";
-    data.id = editarId.toString();
+    data.id = idUsuEditar.toString();
   } else {
     data.id = nextId.toString(); // Asignar el nuevo ID como cadena y luego incrementarlo
     nextId++;
@@ -31,6 +32,6 @@ export async function enviarDatos(nombre, apellido, documento, telefono, select,
     body: JSON.stringify(data),
   });
 
-  editarId = null;
-  mostrarDatos();
+  idUsuEditar = null;
+  mostrarDatos(nextId, nombre, apellido, telefono, documento, select, correo, direccion);
 }

@@ -2,6 +2,7 @@
 import { validCampos, validDoc, validTel } from "./modules/modulo.js";
 import mostrarDatos from "./modules/mostrarDatos.js";
 import { enviarDatos } from "./modules/enviarDatos.js";
+import { eliminarDatos } from "./modules/eliminarDatos.js";
 import { soloNumeros, soloLetras } from "./modules/validPress.js";
  
 
@@ -22,8 +23,10 @@ const select = document.getElementById('tipo_doc');
 let correo = document.getElementById("email")
 let direccion = document.getElementById("direccion")
 
-let editarId = null;
-
+let idUsuEditar = null;
+function editarId(id) {
+  idUsuEditar = id;
+}
 
 // CARGAR TIPO DE DOCUMENTO
 async function tipo_doc() {
@@ -57,46 +60,11 @@ telefono.addEventListener("input", () => validTel(telefono));
 documento.addEventListener("input", () => validDoc(documento));
 
 // MOSTRAR DATOS EN LA TABLA
-mostrarDatos()
+mostrarDatos(nextId, nombre, apellido, telefono, documento, select, correo, direccion, editarId);
 
-form.addEventListener('submit', () => validCampos(nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos,  editarId, nextId))
-
-
-// ELIMINAR DATOS O USUARIO DE LA API 
-/*
-let eliminarrrrrrrrrr = document.querySelectorAll(".tbody > .eliminar")
-console.log(eliminarrrrrrrrrr)
-
-eliminarrrrrrrrrr.forEach((eli) => {
-  eli.addEventListener("click", () => {
-    console.log("fesfesf")
-  })
-})
-
-if (eliminar != null) {
-  eliminar.addEventListener("click", () => console.log("drgdrgrg"))
-}
-*/
-const eliminarDatos = async (id) => {
-  await fetch(`http://localhost:3000/user/${id}`, {
-    method: 'DELETE'
-  });
-  mostrarDatos();
-}
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
   
-// CARGAR DATOS PARA EDICION
-async function cargarDatos(id){
-  const response = await fetch(`http://localhost:3000/user/${id}`);
-  const data = await response.json();
-
-  editarId = id;
-  // document.getElementById("id").value = data.id;
-  document.getElementById("name").value = data.nombre;
-  document.getElementById("lastname").value = data.apellido;
-  document.getElementById("documento").value = data.documento;
-  document.getElementById("tipo_doc").value = data.tipo_doc;
-  document.getElementById("email").value = data.correo;
-  document.getElementById("direccion").value = data.direccion;
-}
-
-// cargarDatos(5);
+  validCampos(event, nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos,  idUsuEditar, nextId)
+  // editarId = null;
+})
