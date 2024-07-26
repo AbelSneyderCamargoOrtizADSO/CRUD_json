@@ -1,5 +1,5 @@
 // ORDEN: importaciones - variables - metodos addevent 
-import { validCampos, validDoc, validTel } from "./modules/modulo.js";
+import { validCampos, validDoc, validTel, validText} from "./modules/modulo.js";
 import mostrarDatos from "./modules/mostrarDatos.js";
 import { enviarDatos } from "./modules/enviarDatos.js";
 import { eliminarDatos } from "./modules/eliminarDatos.js";
@@ -56,15 +56,23 @@ apellido.addEventListener("keypress", soloLetras)
 documento.addEventListener("keypress", soloNumeros)
 telefono.addEventListener("keypress", soloNumeros)
 
-telefono.addEventListener("input", () => validTel(telefono));
-documento.addEventListener("input", () => validDoc(documento));
+telefono.addEventListener("blur", () => validTel(telefono));
+documento.addEventListener("blur", () => validDoc(documento));
+nombre.addEventListener("blur", () => {
+  let tipo = "Nombre";
+  validText(nombre, tipo, 0)
+});
+apellido.addEventListener("blur", () => {
+  let tipo = "Apellido";
+  validText(apellido, tipo, 1)
+});
+
+
 
 // MOSTRAR DATOS EN LA TABLA
 mostrarDatos(nextId, nombre, apellido, telefono, documento, select, correo, direccion, editarId);
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  
-  validCampos(event, nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos,  idUsuEditar, nextId)
+form.addEventListener('submit', (event, form) => {
+  validCampos(event, form, nombre, apellido, telefono, documento, select, correo, direccion, enviarDatos,  idUsuEditar, nextId)
   // editarId = null;
 })

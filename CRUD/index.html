@@ -11,48 +11,48 @@
 <body>
 
   <main class="container">
-    <form class="form" id="form">
+    <form class="form" id="form" novalidate>
 
       <div class="form__group">
         <label for="name">Nombre</label>
-        <input id="name" type="text" name="name">
+        <input class="form__input" id="name" type="text" name="name" required>
       </div>
       
       <div class="form__group">
         <label for="lastname">Apellido</label>
-        <input id="lastname" type="text">
+        <input class="form__input" id="lastname" type="text" required>
       </div>
 
       <div class="form__group">
         <label for="tel">Telefono</label>
-        <input id="tel">
+        <input class="form__input" id="tel" required>
       </div>
 
       <div class="form__group">
         <label for="tipo_doc">Tipo de documento</label>
-        <select id="tipo_doc">
+        <select id="tipo_doc" required>
           <option value="">Selecciona el tipo de documento</option>
         </select>
       </div>  
 
       <div class="form__group">
         <label for="documento">Documento</label>
-        <input id="documento" type="text">
+        <input class="form__input" id="documento" type="text" required>
       </div>
 
       <div class="form__group">
         <label for="email">Correo</label>
-        <input id="email" >
+        <input class="form__input" id="email">
       </div>
 
       <div class="form__group">
         <label for="direccion">Direccion</label>
-        <input id="direccion" type="text">
+        <input class="form__input" id="direccion" type="text" required>
       </div>
 
       <div class="form__group">
         <label for="terminos">Aceptar terminos y condiciones</label>
-        <input id="terminos" type="checkbox">
+        <input class="form__input" id="terminos" type="checkbox" required>
       </div>
 
       <button type="submit" id="btnEnviar" disabled>Enviar</button>
