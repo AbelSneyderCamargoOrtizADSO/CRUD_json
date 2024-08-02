@@ -8,26 +8,17 @@
       "telefono": "undefined",
       "tipo_doc": "ti",
       "correo": "grdgrdg@grdgr-com",
-      "direccion": "calle 1058"
+      "direccion": "calle 105888"
     },
     {
       "id": "3",
       "nombre": "Abel",
       "apellido": "Camargao",
       "documento": "1096063951",
+      "telefono": "undefined",
       "tipo_doc": "ti",
       "correo": "grdgrdg@grdgr-com",
       "direccion": "calle 103"
-    },
-    {
-      "id": "4",
-      "nombre": "Camilo",
-      "apellido": "Sanchez",
-      "documento": "234234",
-      "telefono": "undefined",
-      "tipo_doc": "cc",
-      "correo": "eo.com",
-      "direccion": "carrea 150"
     },
     {
       "id": "5",
@@ -44,50 +35,10 @@
       "nombre": "rgdrg",
       "apellido": "drgrdg",
       "documento": "435345",
-      "telefono": "undefined",
+      "telefono": "57567657",
       "tipo_doc": "cc",
       "correo": "abecl8099@gmail.com",
       "direccion": "calle 103 cra 13b"
-    },
-    {
-      "id": "1",
-      "nombre": "Abel",
-      "apellido": "Camargo",
-      "documento": "45456456",
-      "telefono": "3176230216",
-      "tipo_doc": "ti",
-      "correo": "abelcamargo1@gmail.com",
-      "direccion": "calee 103"
-    },
-    {
-      "id": "1",
-      "nombre": "Abelyu",
-      "apellido": "Camargo",
-      "documento": "567567567",
-      "telefono": "3176230216",
-      "tipo_doc": "ti",
-      "correo": "abelcamargo1@gmail.com",
-      "direccion": "calee 103"
-    },
-    {
-      "id": "1",
-      "nombre": "Abelyuuuuuuuuuuuuuuuu",
-      "apellido": "Camargo",
-      "documento": "456456456",
-      "telefono": "3176230216",
-      "tipo_doc": "cc",
-      "correo": "abelcamargo1@gmail.com",
-      "direccion": "calee 103"
-    },
-    {
-      "id": "1",
-      "nombre": "Joniiii",
-      "apellido": "Doe",
-      "documento": "67567567",
-      "telefono": "6019521325",
-      "tipo_doc": "cc",
-      "correo": "test@example.us",
-      "direccion": "1600 Amphitheatre Parkway"
     }
   ],
   "tipo_doc": [
@@ -98,6 +49,10 @@
     {
       "id": "2",
       "nombre": "ti"
+    },
+    {
+      "id": "3",
+      "nombre": "ce"
     }
   ]
 }
